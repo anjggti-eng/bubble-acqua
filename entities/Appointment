@@ -1,0 +1,61 @@
+{
+  "name": "Appointment",
+  "type": "object",
+  "properties": {
+    "barbershop_id": {
+      "type": "string",
+      "description": "ID da barbearia"
+    },
+    "service_id": {
+      "type": "string",
+      "description": "ID do servi\u00e7o"
+    },
+    "client_email": {
+      "type": "string",
+      "description": "Email do cliente"
+    },
+    "client_name": {
+      "type": "string",
+      "description": "Nome do cliente"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "Data do agendamento"
+    },
+    "time": {
+      "type": "string",
+      "description": "Hor\u00e1rio do agendamento (ex: 14:00)"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pendente",
+        "confirmado",
+        "cancelado",
+        "concluido"
+      ],
+      "default": "pendente",
+      "description": "Status do agendamento"
+    },
+    "service_name": {
+      "type": "string",
+      "description": "Nome do servi\u00e7o"
+    },
+    "service_price": {
+      "type": "number",
+      "description": "Pre\u00e7o do servi\u00e7o"
+    },
+    "barbershop_name": {
+      "type": "string",
+      "description": "Nome da barbearia"
+    }
+  },
+  "required": [
+    "barbershop_id",
+    "service_id",
+    "date",
+    "time",
+    "client_name"
+  ]
+}

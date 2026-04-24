@@ -1,0 +1,55 @@
+{
+  "name": "Coupon",
+  "type": "object",
+  "properties": {
+    "barbershop_id": {
+      "type": "string",
+      "description": "ID da barbearia"
+    },
+    "barbershop_name": {
+      "type": "string",
+      "description": "Nome da barbearia"
+    },
+    "code": {
+      "type": "string",
+      "description": "C\u00f3digo do cupom"
+    },
+    "title": {
+      "type": "string",
+      "description": "T\u00edtulo da promo\u00e7\u00e3o"
+    },
+    "description": {
+      "type": "string",
+      "description": "Descri\u00e7\u00e3o da promo\u00e7\u00e3o"
+    },
+    "discount_type": {
+      "type": "string",
+      "enum": [
+        "percent",
+        "fixed"
+      ],
+      "description": "Tipo de desconto"
+    },
+    "discount_value": {
+      "type": "number",
+      "description": "Valor do desconto"
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date",
+      "description": "Data de expira\u00e7\u00e3o"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Se o cupom est\u00e1 ativo"
+    }
+  },
+  "required": [
+    "barbershop_id",
+    "code",
+    "title",
+    "discount_type",
+    "discount_value"
+  ]
+}

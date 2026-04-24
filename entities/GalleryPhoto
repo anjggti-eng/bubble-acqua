@@ -1,0 +1,35 @@
+{
+  "name": "GalleryPhoto",
+  "type": "object",
+  "properties": {
+    "barbershop_id": {
+      "type": "string",
+      "description": "ID da barbearia"
+    },
+    "image_url": {
+      "type": "string",
+      "description": "URL da foto"
+    },
+    "title": {
+      "type": "string",
+      "description": "T\u00edtulo/nome do corte"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "degrad\u00ea",
+        "social",
+        "navalhado",
+        "barba",
+        "infantil",
+        "colora\u00e7\u00e3o",
+        "outro"
+      ],
+      "description": "Categoria do corte"
+    }
+  },
+  "required": [
+    "barbershop_id",
+    "image_url"
+  ]
+}

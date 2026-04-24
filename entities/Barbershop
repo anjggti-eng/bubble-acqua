@@ -1,0 +1,70 @@
+{
+  "name": "Barbershop",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Nome da barbearia"
+    },
+    "description": {
+      "type": "string",
+      "description": "Descri\u00e7\u00e3o da barbearia"
+    },
+    "address": {
+      "type": "string",
+      "description": "Endere\u00e7o completo"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Telefone de contato"
+    },
+    "latitude": {
+      "type": "number",
+      "description": "Latitude para localiza\u00e7\u00e3o"
+    },
+    "longitude": {
+      "type": "number",
+      "description": "Longitude para localiza\u00e7\u00e3o"
+    },
+    "cover_image": {
+      "type": "string",
+      "description": "Foto de capa da barbearia"
+    },
+    "logo": {
+      "type": "string",
+      "description": "Logo da barbearia"
+    },
+    "opening_hour": {
+      "type": "string",
+      "description": "Hor\u00e1rio de abertura (ex: 08:00)"
+    },
+    "closing_hour": {
+      "type": "string",
+      "description": "Hor\u00e1rio de fechamento (ex: 20:00)"
+    },
+    "working_days": {
+      "type": "array",
+      "description": "Dias de funcionamento",
+      "items": {
+        "type": "string",
+        "enum": [
+          "segunda",
+          "terca",
+          "quarta",
+          "quinta",
+          "sexta",
+          "sabado",
+          "domingo"
+        ]
+      }
+    },
+    "owner_email": {
+      "type": "string",
+      "description": "Email do dono da barbearia"
+    }
+  },
+  "required": [
+    "name",
+    "address"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "name": "Review",
+  "type": "object",
+  "properties": {
+    "barbershop_id": {
+      "type": "string",
+      "description": "ID da barbearia avaliada"
+    },
+    "client_email": {
+      "type": "string",
+      "description": "Email do cliente que avaliou"
+    },
+    "client_name": {
+      "type": "string",
+      "description": "Nome do cliente"
+    },
+    "rating": {
+      "type": "number",
+      "description": "Nota de 1 a 5"
+    },
+    "comment": {
+      "type": "string",
+      "description": "Coment\u00e1rio opcional"
+    }
+  },
+  "required": [
+    "barbershop_id",
+    "client_email",
+    "rating"
+  ]
+}
