@@ -43,7 +43,16 @@ O servidor de producao esta em `server.js`. Ele entrega os arquivos do `dist` e 
 
 ## Deploy No Coolify
 
-Use a opcao Node.js/Nixpacks.
+Use a opcao Dockerfile ou Node.js. A opcao Dockerfile e a mais indicada para manter a API do ranking ativa junto com o jogo.
+
+Se usar Dockerfile:
+
+```text
+Dockerfile location: /Dockerfile
+Port: 5173
+```
+
+Se usar Node.js/Nixpacks:
 
 Build command:
 
