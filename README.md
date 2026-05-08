@@ -1,47 +1,77 @@
-const db = globalThis.__B44_DB__ || { auth:{ isAuthenticated: async()=>false, me: async()=>null }, entities:new Proxy({}, { get:()=>({ filter:async()=>[], get:async()=>null, create:async()=>({}), update:async()=>({}), delete:async()=>({}) }) }), integrations:{ Core:{ UploadFile:async()=>({ file_url:'' }) } } };
+# Bubble Acqua
 
-## Projeto exportado da Base44
+Bubble Acqua e um jogo casual de merge com fisica, visual aquatico e sistema de ranking em tempo real. O jogador faz um cadastro simples, joga, melhora sua pontuacao e aparece em um leaderboard sincronizado.
 
-Este repositorio contem um frontend React/Vite exportado da Base44.
+## Destaques
 
-No estado atual, a interface local existe, mas autenticacao, banco e upload de arquivos ainda dependem da Base44.
+- Jogo completo em navegador, com experiencia fluida e responsiva.
+- Cadastro simples de jogador com nome e e-mail.
+- Ranking sincronizado por API propria.
+- Tela de entrada com creditos Orbitan & Noctus.co.
+- Visual rebrandizado para Bubble Acqua.
+- Pronto para deploy em PaaS/Coolify com Node.js.
 
-## Rodar localmente
+## Rodar Localmente
 
-1. Instale as dependencias com `npm install`
-2. Inicie o frontend com `npm run dev`
+```bash
+npm install
+npm run dev
+```
 
-## Sair da Base44
+Depois acesse:
 
-Os arquivos abaixo foram adicionados para orientar a migracao para uma infraestrutura propria:
+```text
+http://localhost:5173
+```
 
-- `docs/migracao-base44.md`
-- `backend/schema.sql`
-- `backend/api-contract.md`
-- `backend/README.md`
-- `backend/.env.example`
+## Rodar Em Producao
 
-Esses arquivos descrevem:
+```bash
+npm install
+npm run build
+npm start
+```
 
-1. O que ainda esta acoplado a Base44
-2. O schema do banco para Postgres
-3. O contrato de API necessario para o frontend funcionar sem Base44
+O servidor de producao esta em `server.js`. Ele entrega os arquivos do `dist` e tambem responde as rotas da API do jogo.
 
-## Proximo passo
+## Rotas Da API
 
-O projeto agora tambem possui um backend Node.js em `backend/`, com:
+- `GET /api/game/leaderboard`
+- `GET /api/game/player?id=...`
+- `POST /api/game/register`
+- `POST /api/game/score`
 
-1. autenticacao JWT
-2. CRUD das entidades do app
-3. upload local de arquivos
-4. script de migracao para Postgres
+## Deploy No Coolify
 
-Para usar com seu banco do Coolify:
+Use a opcao Node.js/Nixpacks.
 
-1. copie `backend/.env.example` para `backend/.env`
-2. preencha `DATABASE_URL`
-3. rode `npm install`
-4. rode `npm run db:migrate`
-5. rode `npm run dev`
+Build command:
 
-O proximo passo tecnico recomendado e substituir as chamadas `db.auth`, `db.entities` e `db.integrations.Core.UploadFile` do frontend por um cliente HTTP proprio apontando para esse backend.
+```bash
+npm install && npm run build
+```
+
+Start command:
+
+```bash
+npm start
+```
+
+Variaveis recomendadas:
+
+```bash
+NODE_ENV=production
+GAME_DATA_DIR=/app/.game-data
+```
+
+Crie tambem um volume persistente em:
+
+```text
+/app/.game-data
+```
+
+Isso mantem cadastros e pontuacoes salvos mesmo quando o app reiniciar.
+
+## Creditos
+
+Produto desenvolvido pela Orbitan & Noctus.co.
