@@ -582,6 +582,19 @@ function startBrandTextGuard() {
     'Merge Rainbow + Rainbow',
     'Coral Tide Unlocked',
   ]
+  const storeCtaMarkers = [
+    'Google Play',
+    'Play Store',
+    'App Store',
+    'SCAN TO PLAY',
+    'Point your camera',
+    'download instantly',
+    'Download Bubble Acqua',
+    'Join the Bubble Acqua iPhone waitlist',
+    'iPhone Soon',
+    'Unlock Prism',
+    'PLAY ON THE GO',
+  ]
 
   const removeCommunityGoal = (node = document.body) => {
     if (!node || node.nodeType !== Node.ELEMENT_NODE || node.id === 'game-account-system') return
@@ -599,6 +612,30 @@ function startBrandTextGuard() {
       const card = candidate.closest('.relative.z-40') || candidate.closest('[class*="glass"]')
       if (card && card.id !== 'root' && card !== document.body && !card.closest('#game-account-system')) card.remove()
       return
+    }
+  }
+
+  const removeStoreCtas = (node = document.body) => {
+    if (!node || node.nodeType !== Node.ELEMENT_NODE || node.id === 'game-account-system') return
+
+    const walker = document.createTreeWalker(node, NodeFilter.SHOW_TEXT)
+    const textNodes = []
+    while (walker.nextNode()) textNodes.push(walker.currentNode)
+
+    for (const textNode of textNodes) {
+      const candidate = textNode.parentElement
+      if (!candidate || candidate.closest('#game-account-system')) continue
+      const text = textNode.nodeValue || ''
+      if (!storeCtaMarkers.some((marker) => text.includes(marker))) continue
+
+      const card =
+        candidate.closest('.desktop-cta-panel') ||
+        candidate.closest('a, button, form') ||
+        candidate.closest('[data-analytics-surface="desktop_cta"]') ||
+        candidate.closest('.relative.z-50') ||
+        candidate
+
+      if (card && card.id !== 'root' && card !== document.body && !card.closest('#game-account-system')) card.remove()
     }
   }
 
@@ -621,15 +658,18 @@ function startBrandTextGuard() {
 
   replaceBrandText(document.body)
   removeCommunityGoal()
+  removeStoreCtas()
   const observer = new MutationObserver((mutations) => {
     for (const mutation of mutations) {
       for (const node of mutation.addedNodes) {
         replaceBrandText(node)
         removeCommunityGoal(node)
+        removeStoreCtas(node)
       }
       if (mutation.type === 'characterData') {
         replaceBrandText(mutation.target)
         removeCommunityGoal(mutation.target.parentElement)
+        removeStoreCtas(mutation.target.parentElement)
       }
     }
   })
@@ -642,6 +682,8 @@ function startBrandTextGuard() {
 
   const cleanupTimer = setInterval(removeCommunityGoal, 350)
   setTimeout(() => clearInterval(cleanupTimer), 12000)
+  const storeCleanupTimer = setInterval(removeStoreCtas, 350)
+  setTimeout(() => clearInterval(storeCleanupTimer), 12000)
 }
 
 function bindUi() {
