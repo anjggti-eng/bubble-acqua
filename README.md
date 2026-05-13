@@ -1,5 +1,7 @@
 # Bubble Acqua
 
+demo:https://bubble-acqua.vercel.app/
+
 Bubble Acqua e um jogo casual de merge com fisica, visual aquatico e sistema de ranking em tempo real. O jogador faz um cadastro simples, joga, melhora sua pontuacao e aparece em um leaderboard sincronizado.
 
 ## Destaques
